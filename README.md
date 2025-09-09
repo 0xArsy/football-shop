@@ -1,3 +1,6 @@
+Z Arsy Alam Sin (2406495836)
+Kelas : A
+
 Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 = Saya membuat project Django, menambahkan app, lalu mendefinisikan model Product di models.py. Setelah itu menjalankan makemigrations dan migrate agar model tersimpan di database. Data diambil lewat views.py, dihubungkan dengan urls.py, lalu ditampilkan pada template HTML. Terakhir diuji dengan runserver dan dideploy ke PWS.
 
