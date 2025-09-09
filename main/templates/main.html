@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ app_name }}</title>
+</head>
+<body>
+    <h1>Welcome to {{ app_name }}!</h1>
+    <p>Nama: {{ student_name }}</p>
+    <p>Kelas: {{ student_class }}</p>
+
+    <h2>Daftar Produk</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <h3>{{ product.name }} - Rp {{ product.price }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Kategori: {{ product.category }}</p>
+                <p>Unggulan: {{ product.is_featured }}</p>
+                <img src="{{ product.thumbnail }}" alt="{{ product.name }}" width="150">
+                <p>Stok: {{ product.stock }}</p>
+                <p>Brand: {{ product.brand }}</p>
+            </li>
+        {% empty %}
+            <li>Tidak ada produk</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
