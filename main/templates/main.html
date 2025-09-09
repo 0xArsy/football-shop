@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ app_name }}</title>
+    <title>Football Shop</title>
 </head>
 <body>
-    <h1>Welcome to {{ app_name }}!</h1>
-    <p>Nama: {{ student_name }}</p>
-    <p>Kelas: {{ student_class }}</p>
+    <h1>Welcome to Football Shop!</h1>
+    <p>Nama: {{ name }}</p>
+    <p>Kelas: {{ class }}</p>
 
     <h2>Daftar Produk</h2>
-    <ul>
+    {% if products %}
+        <ul>
         {% for product in products %}
             <li>
-                <h3>{{ product.name }} - Rp {{ product.price }}</h3>
-                <p>{{ product.description }}</p>
-                <p>Kategori: {{ product.category }}</p>
-                <p>Unggulan: {{ product.is_featured }}</p>
+                <h3>{{ product.name }} ({{ product.brand }})</h3>
                 <img src="{{ product.thumbnail }}" alt="{{ product.name }}" width="150">
-                <p>Stok: {{ product.stock }}</p>
-                <p>Brand: {{ product.brand }}</p>
+                <p>Harga: Rp {{ product.price }}</p>
+                <p>Kategori: {{ product.category }}</p>
+                <p>Deskripsi: {{ product.description }}</p>
+                <p>Stok: {{ product.quantity }}</p>
+                {% if product.is_featured %}
+                    <strong>⭐ Produk Unggulan!</strong>
+                {% endif %}
             </li>
-        {% empty %}
-            <li>Tidak ada produk</li>
         {% endfor %}
-    </ul>
+        </ul>
+    {% else %}
+        <p>Tidak ada produk</p>
+    {% endif %}
 </body>
 </html>
