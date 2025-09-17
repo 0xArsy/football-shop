@@ -1,32 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Football Shop</title>
-</head>
-<body>
-    <h1>Welcome to Football Shop!</h1>
-    <p>Nama: {{ name }}</p>
-    <p>Kelas: {{ class }}</p>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Welcome to Football Shop!</h1>
 
-    <h2>Daftar Produk</h2>
-    {% if products %}
-        <ul>
-        {% for product in products %}
-            <li>
-                <h3>{{ product.name }} ({{ product.brand }})</h3>
-                <img src="{{ product.thumbnail }}" alt="{{ product.name }}" width="150">
-                <p>Harga: Rp {{ product.price }}</p>
-                <p>Kategori: {{ product.category }}</p>
-                <p>Deskripsi: {{ product.description }}</p>
-                <p>Stok: {{ product.quantity }}</p>
-                {% if product.is_featured %}
-                    <strong>⭐ Produk Unggulan!</strong>
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>Tidak ada produk</p>
-    {% endif %}
-</body>
-</html>
+<p>Nama: {{ name }}</p>
+<p>Kelas: {{ class }}</p>
+
+<h2>Daftar Produk</h2>
+
+<a href="{% url 'main:create_product' %}"><button>+ Tambah Produk</button></a>
+<hr>
+
+{% if not products %}
+  <p>Belum ada produk tersedia.</p>
+{% else %}
+  {% for product in products %}
+    <div>
+      <h3>{{ product.name }} ({{ product.brand }})</h3>
+      <p><b>{{ product.name }}</b></p>
+      <p>Harga: Rp {{ product.price }}</p>
+      <p>Kategori: {{ product.category }}</p>
+      <p>Deskripsi: {{ product.description|truncatewords:20 }}</p>
+      <p>Stok: {{ product.quantity }}</p>
+      {% if product.is_featured %}
+        <p>⭐ Produk Unggulan!</p>
+      {% endif %}
+      <p><a href="{% url 'main:show_product' product.id %}"><button>Detail</button></a></p>
+    </div>
+    <hr>
+  {% endfor %}
+{% endif %}
+{% endblock %}
