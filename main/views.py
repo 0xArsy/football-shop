@@ -3,8 +3,12 @@ from django.http import HttpResponse
 from django.core import serializers
 from main.forms import ProductForm
 from main.models import Product
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
+@login_required(login_url='/login/')
 def show_main(request):
+    server_user, _ = User.objects.get_or_create(username="Server")
     if Product.objects.count() == 0:
         Product.objects.create(
             name="Bola Adidas Al Rihla",
@@ -14,7 +18,8 @@ def show_main(request):
             category="Bola",
             is_featured=True,
             quantity=10,
-            brand="Adidas"
+            brand="Adidas",
+            user=server_user
         )
         Product.objects.create(
             name="Bola Nike Flight",
@@ -24,7 +29,8 @@ def show_main(request):
             category="Bola",
             is_featured=False,
             quantity=4,
-            brand="Nike"
+            brand="Nike",
+            user=server_user
         )
         Product.objects.create(
             name="Bola Molten F5A",
@@ -34,7 +40,8 @@ def show_main(request):
             category="Bola",
             is_featured=False,
             quantity=15,
-            brand="Molten"
+            brand="Molten",
+            user=server_user
         )
 
     products = Product.objects.all()
@@ -42,14 +49,18 @@ def show_main(request):
         'npm': '2406495836',
         'name': 'Z Arsy Alam Sin',
         'class': 'A',
-        'products': products
+        'products': products,
+        'username': request.user.username if request.user.is_authenticated else None,
+        'last_login': request.COOKIES.get('last_login'),
     }
     return render(request, "main.html", context)
 
 def create_product(request):
     form = ProductForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
-        form.save()
+        product = form.save(commit=False)
+        product.user = request.user
+        product.save()
         return redirect("main:show_main")
     return render(request, "create_product.html", {"form": form})
 
