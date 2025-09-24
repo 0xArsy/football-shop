@@ -1,3 +1,47 @@
+=== TUGAS 4 ===
+
+Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya.
+= AuthenticationForm adalah form bawaan Django untuk proses login (username + password)
+Kelebihannya: langsung aman (validasi, integrasi dengan sistem authenticate()), cepat dipakai tanpa bikin form manual, dan kompatibel dengan middleware Django
+Kekurangannya: interface-nya dasar (harus costum kalau mau pakai email sebagai login), dan kalau butuh logika login kustom harus ditambah sendiri
+
+Apa perbedaan antara autentikasi dan otorisasi? Bagaiamana Django mengimplementasikan kedua konsep tersebut?
+= Autentikasi itu soal memastikan siapa orangnya (misalnya login dengan akun). Otorisasi itu soal menentukan apa yang boleh dia lakukan setelah masuk (misalnya bisa edit data atau cuma lihat saja). Django sudah menyiapkan dua-duanya, jadi pengguna bisa login, lalu sistem juga tahu apa saja izin yang dia punya
+
+Apa saja kelebihan dan kekurangan session dan cookies dalam konteks menyimpan state di aplikasi web?
+= Session lebih aman karena data utamanya disimpan di server, tapi butuh penyimpanan tambahan. Cookies lebih simpel dan bisa bertahan lebih lama, tapi ada risiko kalau tidak dijaga, misalnya bisa dibaca atau diubah orang lain
+
+Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai? Bagaimana Django menangani hal tersebut?
+= Tidak sepenuhnya aman. Ada risiko seperti dicuri atau dipakai orang lain kalau tidak hati-hati. Django sudah menambahkan perlindungan bawaan, misalnya token keamanan dan pengaturan khusus di cookies, tapi tetap harus kita atur dengan benar
+
+Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+= Pertama bikin app baru untuk autentikasi lalu tambahkan di settings
+Lalu bikin halaman login, register, dan logout.
+Tambahkan relasi antara produk dan pengguna supaya setiap produk jelas dibuat oleh siapa.
+Bikin proteksi biar halaman utama hanya bisa diakses setelah login.
+Tampilkan siapa yang membuat produk dan kapan terakhir login.
+Terakhir, coba buat dua akun berbeda dan masing-masing isi dengan beberapa data produk.
+<img width="576" height="546" alt="image" src="https://github.com/user-attachments/assets/f5c73b62-bf36-475d-88ed-758190d54dd2" />
+<img width="613" height="535" alt="image" src="https://github.com/user-attachments/assets/aa57c9b1-b113-4be2-a153-3aa1af04dda9" />
+<img width="345" height="846" alt="image" src="https://github.com/user-attachments/assets/58278930-7acd-4012-a242-edba33302f3c" />
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 = Data delivery memungkinkan komunikasi antar backend > frontend > service). Tanpa format standar (XML/JSON), sulit bertukar data antar aplikasi/platform berbeda
 
