@@ -1,3 +1,69 @@
+=== TUGAS 5 ===
+Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+= Urutan prioritas CSS ditentukan dari seberapa spesifik sebuah selector. Inline style yang langsung ditulis di elemen punya prioritas paling tinggi. Setelah itu, selector dengan id akan diambil, lalu class, pseudo-class, dan attribute selector. Terakhir yang paling lemah adalah selector berbasis tag atau elemen seperti div atau p. Jika ada selector dengan tingkat yang sama, maka aturan yang ditulis paling akhir akan dipakai.
+
+Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+= Responsive design penting karena orang mengakses web lewat perangkat dengan ukuran layar berbeda, seperti handphone, tablet, dan laptop. Tanpa responsive design, tampilan bisa berantakan di layar kecil dan membuat pengguna tidak nyaman. Misalnya, Instagram sudah menerapkan responsive design sehingga tampilan webnya tetap enak dilihat baik di hp maupun laptop. Sebaliknya, beberapa website pemerintah lama sering tidak responsive, sehingga di hp tulisannya kecil sekali dan pengguna harus zoom manual.
+
+Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+= Margin adalah ruang di luar elemen yang memisahkannya dengan elemen lain. Border adalah garis tepi yang mengelilingi sebuah elemen. Sedangkan padding adalah ruang di dalam elemen, yaitu jarak antara isi konten dan garis border. Implementasinya sederhana, misalnya dengan memberi aturan CSS seperti margin 20px, border 2px solid hitam, dan padding 10px untuk memberi jarak yang jelas.
+
+Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+= Flexbox adalah metode untuk mengatur elemen secara fleksibel dalam satu baris atau satu kolom. Konsep ini sangat berguna untuk membuat layout sederhana seperti navbar atau card yang berjajar. Sementara itu, grid layout digunakan untuk membagi halaman ke dalam baris dan kolom yang lebih kompleks. Grid lebih cocok dipakai saat ingin menampilkan banyak elemen yang butuh penataan rapi seperti galeri produk.
+
+Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+= Pertama, saya membuat file CSS khusus agar styling lebih terpisah dari HTML.
+Kedua, saya mencoba mengatur margin, border, dan padding untuk memahami box model.
+Ketiga, saya menggunakan flexbox untuk membuat navbar agar lebih rapi di layar kecil maupun besar.
+Keempat, saya memakai grid layout untuk menampilkan daftar produk supaya berbentuk kolom dan baris yang rapi.
+Kelima, saya mengecek hasilnya di laptop dan handphone, lalu menyesuaikan ukuran agar web tetap responsive.
+
+
+
+=== TUGAS 4 ===
+
+Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya.
+= AuthenticationForm adalah form bawaan Django untuk proses login (username + password)
+Kelebihannya: langsung aman (validasi, integrasi dengan sistem authenticate()), cepat dipakai tanpa bikin form manual, dan kompatibel dengan middleware Django
+Kekurangannya: interface-nya dasar (harus costum kalau mau pakai email sebagai login), dan kalau butuh logika login kustom harus ditambah sendiri
+
+Apa perbedaan antara autentikasi dan otorisasi? Bagaiamana Django mengimplementasikan kedua konsep tersebut?
+= Autentikasi itu soal memastikan siapa orangnya (misalnya login dengan akun). Otorisasi itu soal menentukan apa yang boleh dia lakukan setelah masuk (misalnya bisa edit data atau cuma lihat saja). Django sudah menyiapkan dua-duanya, jadi pengguna bisa login, lalu sistem juga tahu apa saja izin yang dia punya
+
+Apa saja kelebihan dan kekurangan session dan cookies dalam konteks menyimpan state di aplikasi web?
+= Session lebih aman karena data utamanya disimpan di server, tapi butuh penyimpanan tambahan. Cookies lebih simpel dan bisa bertahan lebih lama, tapi ada risiko kalau tidak dijaga, misalnya bisa dibaca atau diubah orang lain
+
+Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai? Bagaimana Django menangani hal tersebut?
+= Tidak sepenuhnya aman. Ada risiko seperti dicuri atau dipakai orang lain kalau tidak hati-hati. Django sudah menambahkan perlindungan bawaan, misalnya token keamanan dan pengaturan khusus di cookies, tapi tetap harus kita atur dengan benar
+
+Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+= Pertama bikin app baru untuk autentikasi lalu tambahkan di settings
+Lalu bikin halaman login, register, dan logout.
+Tambahkan relasi antara produk dan pengguna supaya setiap produk jelas dibuat oleh siapa.
+Bikin proteksi biar halaman utama hanya bisa diakses setelah login.
+Tampilkan siapa yang membuat produk dan kapan terakhir login.
+Terakhir, coba buat dua akun berbeda dan masing-masing isi dengan beberapa data produk.
+<img width="576" height="546" alt="image" src="https://github.com/user-attachments/assets/f5c73b62-bf36-475d-88ed-758190d54dd2" />
+<img width="613" height="535" alt="image" src="https://github.com/user-attachments/assets/aa57c9b1-b113-4be2-a153-3aa1af04dda9" />
+<img width="345" height="846" alt="image" src="https://github.com/user-attachments/assets/58278930-7acd-4012-a242-edba33302f3c" />
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 = Data delivery memungkinkan komunikasi antar backend > frontend > service). Tanpa format standar (XML/JSON), sulit bertukar data antar aplikasi/platform berbeda
 
