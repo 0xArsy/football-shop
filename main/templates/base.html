@@ -4,14 +4,137 @@
     <meta charset="UTF-8">
     <title>Football Shop</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        header { background: #333; color: white; padding: 10px; }
-        footer { margin-top: 20px; padding: 10px; background: #eee; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+
+        .navbar .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .navbar .logo span {
+            color: white;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar ul li a:hover {
+            color: #4CAF50;
+        }
+
+        .navbar .user-info {
+            color: white;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .navbar .logout {
+            color: red;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar .logout:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eee;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+            }
+            .navbar .menu-toggle {
+                display: block;
+                cursor: pointer;
+                color: white;
+                font-size: 20px;
+            }
+            .navbar.active ul {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                background-color: #444;
+                margin-top: 10px;
+            }
+            .navbar.active ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
     </style>
+    <script>
+        function toggleMenu() {
+            document.querySelector(".navbar").classList.toggle("active");
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <h1>Football Shop</h1>
+    <header class="navbar">
+        <div class="logo">Football <span>Shop</span></div>
+        
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+        <ul>
+            <li><a href="{% url 'main:show_main' %}">Home</a></li>
+            <li><a href="{% url 'main:show_main' %}">Balls</a></li>
+            <li><a href="{% url 'main:show_main' %}">Shoes</a></li>
+            <li><a href="{% url 'main:show_main' %}">Apparel</a></li>
+            <li><a href="{% url 'main:show_main' %}">Stores</a></li>
+        </ul>
+
+        {% if user.is_authenticated %}
+            <div class="user-info">
+                {{ user.username }} <br>
+                <a href="{% url 'authentication:logout' %}" class="logout">Logout</a>
+            </div>
+        {% else %}
+            <div class="user-info">
+                <a href="{% url 'authentication:login' %}" class="logout">Login</a>
+            </div>
+        {% endif %}
     </header>
 
     <main>

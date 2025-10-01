@@ -1,41 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
 {% block content %}
-<h1>Welcome to Football Shop!</h1>
+<div class="container mt-4">
+    <h2 class="mb-4">Daftar Produk</h2>
 
-<p>Nama: {{ name }}</p>
-<p>Kelas: {{ class }}</p>
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                            <p class="card-text"><strong>Harga:</strong> Rp {{ product.price }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">Dibuat oleh: {{ product.user.username }}</small>
+                            </p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <a href="{% url 'main:product_detail' product.id %}" class="btn btn-primary btn-sm">Detail</a>
+                            
+                            {% if request.user.is_authenticated and product.user == request.user or request.user.is_staff %}
+                                <div class="d-flex">
+                                    <a href="{% url 'main:edit_product' product.id %}" class="btn btn-warning btn-sm me-2">Edit</a>
+                                    <form method="post" action="{% url 'main:delete_product' product.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Yakin ingin menghapus produk ini?')">Delete</button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">Belum ada produk yang ditambahkan.</div>
+    {% endif %}
 
-{% if username %}
-    <p>Halo, {{ username }}!</p>
-    <p>Last login: {{ last_login }}</p>
-    <a href="{% url 'authentication:logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'authentication:login' %}">Login</a>
-{% endif %}
-
-<h2>Daftar Produk</h2>
-
-<a href="{% url 'main:create_product' %}"><button>+ Tambah Produk</button></a>
-<hr>
-
-{% if not products %}
-  <p>Belum ada produk tersedia.</p>
-{% else %}
-  {% for product in products %}
-    <div>
-      <h3>{{ product.name }} ({{ product.brand }})</h3>
-      <p><b>{{ product.name }}</b></p>
-      <p>Harga: Rp {{ product.price }}</p>
-      <p>Kategori: {{ product.category }}</p>
-      <p>Deskripsi: {{ product.description|truncatewords:20 }}</p>
-      <p>Stok: {{ product.quantity }}</p>
-      <p>Created by: {{ product.user.username }}</p>
-      {% if product.is_featured %}
-        <p>⭐ Produk Unggulan!</p>
-      {% endif %}
-      <p><a href="{% url 'main:show_product' product.id %}"><button>Detail</button></a></p>
-    </div>
-    <hr>
-  {% endfor %}
-{% endif %}
+    {% if request.user.is_authenticated %}
+        <div class="mt-4">
+            <a href="{% url 'main:create_product' %}" class="btn btn-success">Tambah Produk</a>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

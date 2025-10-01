@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Confirm Delete</h2>
+<p>Yakin ingin menghapus <strong>{{ product.name }}</strong> ?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Yes, delete</button>
+  <a href="{% url 'main:show_main' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -5,6 +5,9 @@ from main.forms import ProductForm
 from main.models import Product
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
+from .models import Product
+from .forms import ProductForm
 
 @login_required(login_url='/login/')
 def show_main(request):
@@ -83,3 +86,40 @@ def show_xml_by_id(request, product_id):
 def show_json_by_id(request, product_id):
     data = serializers.serialize("json", Product.objects.filter(pk=product_id))
     return HttpResponse(data, content_type="application/json")
+
+def edit_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    if product.user != request.user and not request.user.is_staff:
+        messages.error(request, "You don't have permission to edit this product.")
+        return redirect("main:show_main")
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            updated = form.save(commit=False)
+            updated.user = product.user 
+            updated.save()
+            messages.success(request, "Product updated.")
+            return redirect("main:show_product", id=product.id)
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, "edit_product.html", {"form": form, "product": product})
+
+@login_required
+def delete_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    if product.user != request.user and not request.user.is_staff:
+        messages.error(request, "You don't have permission to delete this product.")
+        return redirect("main:show_main")
+
+    if request.method == "POST":
+        product.delete()
+        messages.success(request, "Product deleted.")
+        return redirect("main:show_main")
+
+    return render(request, "confirm_delete.html", {"product": product})
+
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id)
+    return render(request, "product_detail.html", {"product": product})
