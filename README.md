@@ -1,3 +1,25 @@
+=== TUGAS 5 ===
+Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+= Urutan prioritas CSS ditentukan dari seberapa spesifik sebuah selector. Inline style yang langsung ditulis di elemen punya prioritas paling tinggi. Setelah itu, selector dengan id akan diambil, lalu class, pseudo-class, dan attribute selector. Terakhir yang paling lemah adalah selector berbasis tag atau elemen seperti div atau p. Jika ada selector dengan tingkat yang sama, maka aturan yang ditulis paling akhir akan dipakai.
+
+Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+= Responsive design penting karena orang mengakses web lewat perangkat dengan ukuran layar berbeda, seperti handphone, tablet, dan laptop. Tanpa responsive design, tampilan bisa berantakan di layar kecil dan membuat pengguna tidak nyaman. Misalnya, Instagram sudah menerapkan responsive design sehingga tampilan webnya tetap enak dilihat baik di hp maupun laptop. Sebaliknya, beberapa website pemerintah lama sering tidak responsive, sehingga di hp tulisannya kecil sekali dan pengguna harus zoom manual.
+
+Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+= Margin adalah ruang di luar elemen yang memisahkannya dengan elemen lain. Border adalah garis tepi yang mengelilingi sebuah elemen. Sedangkan padding adalah ruang di dalam elemen, yaitu jarak antara isi konten dan garis border. Implementasinya sederhana, misalnya dengan memberi aturan CSS seperti margin 20px, border 2px solid hitam, dan padding 10px untuk memberi jarak yang jelas.
+
+Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+= Flexbox adalah metode untuk mengatur elemen secara fleksibel dalam satu baris atau satu kolom. Konsep ini sangat berguna untuk membuat layout sederhana seperti navbar atau card yang berjajar. Sementara itu, grid layout digunakan untuk membagi halaman ke dalam baris dan kolom yang lebih kompleks. Grid lebih cocok dipakai saat ingin menampilkan banyak elemen yang butuh penataan rapi seperti galeri produk.
+
+Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+= Pertama, saya membuat file CSS khusus agar styling lebih terpisah dari HTML.
+Kedua, saya mencoba mengatur margin, border, dan padding untuk memahami box model.
+Ketiga, saya menggunakan flexbox untuk membuat navbar agar lebih rapi di layar kecil maupun besar.
+Keempat, saya memakai grid layout untuk menampilkan daftar produk supaya berbentuk kolom dan baris yang rapi.
+Kelima, saya mengecek hasilnya di laptop dan handphone, lalu menyesuaikan ukuran agar web tetap responsive.
+
+
+
 === TUGAS 4 ===
 
 Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya.
