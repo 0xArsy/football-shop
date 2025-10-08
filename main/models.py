@@ -13,7 +13,7 @@ class Product(models.Model):
     thumbnail = models.URLField(blank=True, null=True)
     category = models.CharField(max_length=100)
     is_featured = models.BooleanField(default=False)
-    product_views = models.PositiveIntegerField(default=0)
+    product_views = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now, editable=False) 
 
     def __str__(self):
