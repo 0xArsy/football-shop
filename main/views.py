@@ -26,9 +26,9 @@ def show_main(request):
         product_list = Product.objects.filter(user=request.user)
 
     context = {
-        "npm": "2406421200",
-        "name": "Omar Suyuf Wicaksono",
-        "class": "PBP E",
+        "npm": "2406495836",
+        "name": "Z Arsy Alam Sin",
+        "class": "A",
         "product_list": product_list,
         'last_login': request.COOKIES.get('last_login', 'Never'),
         "app_name": "Football Shop",
